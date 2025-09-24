@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using InstaLite.Views;
 
 namespace InstaLite.ViewModels;
 
@@ -32,7 +33,7 @@ public partial class CreatePostViewModel : ObservableObject
             Caption = ""; ImageUrl = null;
             await Shell.Current.DisplayAlert("Posted", "Your post has been created.", "OK");
             // Navigate to Home
-            await Shell.Current.GoToAsync($"//feed");
+            await Shell.Current.GoToAsync("//feed");
         }
         catch (Exception ex) { Error = ex.Message; }
         finally { IsBusy = false; }

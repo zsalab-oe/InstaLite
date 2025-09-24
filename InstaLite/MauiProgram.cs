@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
+using Microsoft.Maui.Platform;
 
 namespace InstaLite
 {
@@ -17,6 +19,10 @@ namespace InstaLite
 
 #if DEBUG
     		builder.Logging.AddDebug();
+#endif
+
+#if ANDROID
+            ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => handler.PlatformView?.Clear());
 #endif
 
             return builder.Build();

@@ -8,6 +8,8 @@ public class InMemoryRepository
     private readonly List<Post> _posts = new();
     private readonly List<Comment> _comments = new();
     private readonly List<(string followerId, string targetId)> _follows = new();
+    private readonly List<Activity> _activities = new();
+
     private readonly List<NotificationItem> _notifications = new();
     private readonly object _gate = new();
 
@@ -182,5 +184,67 @@ public class InMemoryRepository
         var user = new User { Username = username, AvatarUrl = string.IsNullOrEmpty(avatarUrl) ? $"https://i.pravatar.cc/150?u={username}" : avatarUrl };
         _users.Add(user);
         return Task.FromResult(user);
+    }
+
+    public Task<Activity> AddActivityAsync(string userId,
+        ActivityType type,
+        DateTime? startLocal = null,
+        TimeSpan? duration = null,
+        string? title = null,
+        double? distanceKm = null,
+        int? calories = null,
+        int? effortRpe = null, // 1–10
+        string? notes = null,
+        bool isPublic = false,
+        CancellationToken ct = default)
+    {
+        // Basic validation
+        if (duration.HasValue && duration.Value < TimeSpan.Zero)
+            throw new ArgumentOutOfRangeException(nameof(duration), "Duration must be non-negative.");
+        if (effortRpe.HasValue && (effortRpe.Value < 1 || effortRpe.Value > 10))
+            throw new ArgumentOutOfRangeException(nameof(effortRpe), "EffortRpe must be between 1 and 10.");
+        if (distanceKm.HasValue && distanceKm.Value < 0)
+            throw new ArgumentOutOfRangeException(nameof(distanceKm), "Distance must be non-negative.");
+        if (calories.HasValue && calories.Value < 0)
+            throw new ArgumentOutOfRangeException(nameof(calories), "Calories must be non-negative.");
+
+        var nowUtc = DateTime.UtcNow;
+
+        var activity = new Activity
+        {
+            UserId = string.IsNullOrWhiteSpace(userId) ? Guid.NewGuid().ToString("N") : userId,
+            Type = type,
+            Title = title,
+            StartLocal = startLocal ?? DateTime.Now,
+            Duration = duration ?? TimeSpan.FromMinutes(30),
+            DistanceKm = distanceKm,
+            Calories = calories,
+            EffortRpe = effortRpe,
+            Notes = notes,
+            IsPublic = isPublic,
+            CreatedAt = nowUtc,
+            UpdatedAt = nowUtc
+        };
+
+        // Thread-safe add (since List<T> isn't thread-safe)
+        lock (_activities)
+        {
+            _activities.Add(activity);
+        }
+
+        return Task.FromResult(activity);
+    }
+
+    public Task<List<Activity>> GetUserActivitiesAsync(string userId, CancellationToken ct = default)
+    {
+        List<Activity> res;
+        lock (_activities)
+        {
+            res = _activities
+            .Where(a => a.UserId == userId)
+            .OrderByDescending(a => a.StartLocal)
+            .ToList();
+        }
+        return Task.FromResult(res);
     }
 }

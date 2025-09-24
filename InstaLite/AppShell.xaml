@@ -3,24 +3,35 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:InstaLite.Views"
        x:Class="InstaLite.AppShell"
-       Shell.NavBarIsVisible="False"
+       Shell.NavBarIsVisible="True"
        Shell.TabBarTitleColor="{AppThemeBinding Light=Black, Dark=White}"
        Shell.TabBarUnselectedColor="{AppThemeBinding Light=#888, Dark=#777}"
        Shell.TabBarForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+
+    <!-- icons on the top-right -->
+    <Shell.ToolbarItems>
+        <ToolbarItem IconImageSource="search.png"
+                     Order="Primary" Priority="0"
+                     Clicked="Search_Clicked" />
+        <ToolbarItem IconImageSource="notification.png"
+                     Order="Primary" Priority="1"
+                     Clicked="Notification_Clicked" />
+    </Shell.ToolbarItems>
+
     <TabBar>
         <Tab Title="Home" Route="feed" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate views:FeedPage}" />
         </Tab>
-        <Tab Title="Search" Route="search" Icon="search.png">
-            <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
+        <Tab Title="Activities" Route="activity" Icon="dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ActivityPage}" />
         </Tab>
-        <Tab Title="Create" Route="create" Icon="add.png">
+        <Tab Title="Create" Route="create" Icon="create.png">
             <ShellContent ContentTemplate="{DataTemplate views:CreatePostPage}" />
         </Tab>
-        <Tab Title="Notifications" Route="notifications" Icon="bell.png">
-            <ShellContent ContentTemplate="{DataTemplate views:NotificationsPage}" />
+        <Tab Title="AR Gym" Route="argym" Icon="ar.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ARGymPage}" />
         </Tab>
-        <Tab Title="Profile" Route="profile" Icon="person.png">
+        <Tab Title="Profile" Route="profile" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
         </Tab>
     </TabBar>

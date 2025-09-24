@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InstaLite.Views.SignUpPage"
-             Title="Sign Up">
+             Title="Sign Up"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label Text="Create Account" StyleClass="page-title"/>

@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InstaLite.Views.LoginPage"
              x:Name="page"
-             Title="Login">
+             Title="Login"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="">
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label Text="InstaLite" StyleClass="page-title" HorizontalOptions="Center"/>
