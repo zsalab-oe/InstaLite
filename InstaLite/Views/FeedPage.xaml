@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:InstaLite.ViewModels"
+             xmlns:controls="clr-namespace:InstaLite.Views.Controls"
+             x:Class="InstaLite.Views.FeedPage"
+             x:Name="page"
+             Title="Home">
+    <ContentPage.BindingContext>
+        <viewmodels:FeedViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid Padding="16" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
+            <Label Text="InstaLite" StyleClass="page-title" HorizontalOptions="Center" />
+        </Grid>
+
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Posts}"
+                            RemainingItemsThreshold="2"
+                            RemainingItemsThresholdReached="CollectionView_RemainingItemsThresholdReached"
+                            ItemSizingStrategy="MeasureAllItems">
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="24" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="No posts yet." />
+                        <Button Text="Refresh" Command="{Binding RefreshCommand}" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:PostCard
+                            BindingContext="{Binding .}"
+                            LikeCommand="{Binding Source={x:Reference page}, Path=BindingContext.ToggleLikeCommand}"
+                            OpenCommand="{Binding Source={x:Reference page}, Path=BindingContext.OpenPostCommand}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

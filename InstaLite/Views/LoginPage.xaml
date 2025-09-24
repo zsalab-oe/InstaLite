@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstaLite.Views.LoginPage"
+             x:Name="page"
+             Title="Login">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="InstaLite" StyleClass="page-title" HorizontalOptions="Center"/>
+            <Entry Placeholder="Username" Text="{Binding Username}" ClearButtonVisibility="WhileEditing"/>
+            <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True"/>
+            <Button Text="Login" StyleClass="btn-primary" Command="{Binding LoginCommand}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            <Label Text="{Binding Error}" TextColor="Red" IsVisible="{Binding Error, Converter={StaticResource StringNotNullConverter}}" />
+            <Button Text="Create an account" Command="{Binding GoToSignUpCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:InstaLite.Views"
+       x:Class="InstaLite.AppShell"
+       Shell.NavBarIsVisible="False"
+       Shell.TabBarTitleColor="{AppThemeBinding Light=Black, Dark=White}"
+       Shell.TabBarUnselectedColor="{AppThemeBinding Light=#888, Dark=#777}"
+       Shell.TabBarForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+    <TabBar>
+        <Tab Title="Home" Route="feed" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FeedPage}" />
+        </Tab>
+        <Tab Title="Search" Route="search" Icon="search.png">
+            <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
+        </Tab>
+        <Tab Title="Create" Route="create" Icon="add.png">
+            <ShellContent ContentTemplate="{DataTemplate views:CreatePostPage}" />
+        </Tab>
+        <Tab Title="Notifications" Route="notifications" Icon="bell.png">
+            <ShellContent ContentTemplate="{DataTemplate views:NotificationsPage}" />
+        </Tab>
+        <Tab Title="Profile" Route="profile" Icon="person.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
+        </Tab>
+    </TabBar>
+</Shell>

@@ -1,0 +1,41 @@
+﻿/* Light/Dark friendly basic styles */
+.page-title {
+    font-size: 24;
+    font-attributes: bold;
+    margin: 8 0;
+}
+
+.subtitle {
+    font-size: 14;
+    color: #888;
+}
+
+.btn-primary {
+    background-color: #FF3161;
+    color: white;
+}
+
+.link {
+    color: #3182CE;
+}
+
+.card {
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 18;
+    padding: 12;
+}
+
+.card-dark {
+    background-color: rgba(255,255,255,0.08);
+}
+
+.avatar {
+    width: 36;
+    height: 36;
+    border-radius: 18;
+}
+
+.separator {
+    height: 1;
+    background-color: #e3e3e3;
+}

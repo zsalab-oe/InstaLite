@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:InstaLite.ViewModels"
+             x:Class="InstaLite.Views.SearchPage"
+             Title="Search">
+    <ContentPage.BindingContext>
+        <viewmodels:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        <Grid ColumnDefinitions="*,Auto" Padding="12" RowSpacing="0">
+            <Entry Grid.Column="0" Placeholder="Search users or captions..." Text="{Binding Query}" />
+            <Button Grid.Column="1" Text="Go" Command="{Binding RunCommand}" />
+        </Grid>
+
+        <Label Grid.Row="1" Text="Users" Padding="12,0" />
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Users}" HeightRequest="120" ItemSizingStrategy="MeasureAllItems">
+            <CollectionView.EmptyView>
+                <Label Text="No users." Padding="12"/>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*" Padding="12,6">
+                        <Image Grid.Column="0" Source="{Binding AvatarUrl}" StyleClass="avatar"/>
+                        <Label Grid.Column="1" Text="{Binding Username}" VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView Grid.Row="3" ItemsSource="{Binding Posts}" RemainingItemsThreshold="2">
+            <CollectionView.EmptyView>
+                <Label Text="No posts." Padding="12" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="3"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="1">
+                        <Image Source="{Binding ImageUrl}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Name=page}, Path=BindingContext.OpenPostCommand}" CommandParameter="{Binding .}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

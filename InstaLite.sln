@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaLite", "InstaLite\InstaLite.csproj", "{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1BA7E7-1D7B-4C3F-A951-ECF0CC8F276C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78BF0850-FE68-494F-8B3C-866AE0AF7ACA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:InstaLite.ViewModels"
+             x:Class="InstaLite.Views.CreatePostPage"
+             Title="Create">
+    <ContentPage.BindingContext>
+        <viewmodels:CreatePostViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            <Image Source="{Binding ImageUrl}" HeightRequest="280" BackgroundColor="#222" />
+            <Button Text="Pick Image" Command="{Binding PickImageCommand}" />
+            <Editor Placeholder="Write a caption..." Text="{Binding Caption}" AutoSize="TextChanges" />
+            <Button Text="Share" StyleClass="btn-primary" Command="{Binding SubmitCommand}" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+            <Label Text="{Binding Error}" TextColor="Red" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

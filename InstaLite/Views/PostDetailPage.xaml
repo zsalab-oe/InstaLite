@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:InstaLite.ViewModels"
+             x:Class="InstaLite.Views.PostDetailPage"
+             Title="Post">
+    <ContentPage.BindingContext>
+        <viewmodels:PostDetailViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        <Image Grid.Row="0" Source="{Binding Post.ImageUrl}" Aspect="AspectFill" HeightRequest="300"/>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Comments}" ItemSizingStrategy="MeasureAllItems">
+            <CollectionView.EmptyView>
+                <Label Text="No comments yet." HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*,Auto" Padding="12,8">
+                        <Image Grid.Column="0" Source="{Binding User.AvatarUrl}" StyleClass="avatar"/>
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding User.Username}" FontAttributes="Bold"/>
+                                    <Span Text=" " />
+                                    <Span Text="{Binding Text}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Text="{Binding CreatedAt, StringFormat='{0:t}'}" StyleClass="subtitle"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" Padding="12" BackgroundColor="{AppThemeBinding Light=#fafafa, Dark=#111}">
+            <Entry Grid.Column="0" Placeholder="Add a comment..." Text="{Binding NewComment}" />
+            <Button Grid.Column="1" Text="Post" Command="{Binding AddCommentCommand}" />
+        </Grid>
+    </Grid>
+</ContentPage>

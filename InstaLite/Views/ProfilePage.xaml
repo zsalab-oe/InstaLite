@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:InstaLite.ViewModels"
+             x:Class="InstaLite.Views.ProfilePage"
+             Title="Profile">
+    <ContentPage.BindingContext>
+        <viewmodels:ProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <!-- Header -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="12" ColumnSpacing="12">
+            <Image Grid.Column="0" Source="{Binding User.AvatarUrl}" WidthRequest="80" HeightRequest="80" Aspect="AspectFill" Clip="EllipseGeometry Center=40,40 RadiusX=40 RadiusY=40" />
+            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                <Label Text="{Binding User.Username}" FontSize="20" FontAttributes="Bold"/>
+                <Label Text="{Binding User.Bio}" FontSize="14"/>
+                <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="16">
+                    <Label Grid.Column="0" Text="{Binding User.Followers, StringFormat='Followers: {0}'}" StyleClass="subtitle" />
+                    <Label Grid.Column="1" Text="{Binding User.Following, StringFormat='Following: {0}'}" StyleClass="subtitle"/>
+                    <Label Grid.Column="2" Text="{Binding Posts.Count, StringFormat='Posts: {0}'}" StyleClass="subtitle"/>
+                </Grid>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2" Spacing="8">
+                <Button Text="Edit Profile" Command="{Binding EditProfileCommand}" />
+                <Button Text="Settings" Command="{Binding OpenSettingsCommand}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{AppThemeBinding Light=#eee, Dark=#222}" />
+
+        <!-- Posts Grid -->
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Posts}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="3"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <StackLayout Padding="24" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="No posts yet."/>
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="1">
+                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
