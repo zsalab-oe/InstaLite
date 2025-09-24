@@ -22,7 +22,7 @@
 
         <!-- Actions -->
         <Grid ColumnDefinitions="Auto,Auto,*,Auto" Padding="12,4,12,0">
-            <Button Grid.Column="0" Text="{Binding LikedByMe, Converter={StaticResource BoolToHeartConverter}}" 
+            <Button Grid.Column="0" Text="Like" 
                     Clicked="LikeClicked" />
             <Button Grid.Column="1" Text="💬" Clicked="CommentClicked"/>
             <Label Grid.Column="3" Text="{Binding Likes}" VerticalOptions="Center" FontAttributes="Bold" />

@@ -6,7 +6,12 @@
        Shell.NavBarIsVisible="True"
        Shell.TabBarTitleColor="{AppThemeBinding Light=Black, Dark=White}"
        Shell.TabBarUnselectedColor="{AppThemeBinding Light=#888, Dark=#777}"
-       Shell.TabBarForegroundColor="{AppThemeBinding Light=Black, Dark=White}">
+       Shell.TabBarForegroundColor="{AppThemeBinding Light=Black, Dark=White}"
+       
+       Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#111111}"
+       Shell.ForegroundColor="{AppThemeBinding Light=Black,    Dark=White}"
+       Shell.TitleColor="{AppThemeBinding Light=Black,         Dark=White}"
+       >
 
     <!-- icons on the top-right -->
     <Shell.ToolbarItems>

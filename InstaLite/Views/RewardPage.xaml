@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstaLite.Views.RewardPage"
+             Title="RewardPage">
+    
+    <Grid RowDefinitions="Auto,*" Padding="16">
+        <Label Text="REWARD" FontAttributes="Bold" FontSize="18"
+               Margin="6,0,0,12"/>
+
+        <CollectionView Grid.Row="1"
+                    ItemsSource="{Binding Rewards}"
+                    SelectionMode="None"
+                    Margin="0,0,0,12">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame StyleClass="reward-card" HasShadow="True" Padding="16">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                            <!-- Store + Collect -->
+                            <Label Grid.Row="0" Grid.Column="0"
+                     Text="{Binding Store}"
+                     StyleClass="brand-title" />
+
+                            <Button Grid.Row="0" Grid.Column="1"
+                      Text="Collect"
+                      StyleClass="collect-btn"
+                      Command="{Binding Source={x:Reference ThisPage}, Path=CollectCommand}"
+                      CommandParameter="{Binding .}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsCollected}" Value="True">
+                                        <Setter Property="Text" Value="Collected"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Opacity" Value="0.8"/>
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                            <!-- USE CODE SPORT10 -->
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="USE CODE "/>
+                                        <Span Text="{Binding Code}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- FOR 10% OFF. / $5 OFF ORDERS. -->
+                            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" StyleClass="headline">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="FOR "/>
+                                        <Span Text="{Binding Accent}"/>
+                                        <Span Text="{Binding TailText}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Tap card copies code as well -->
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                  Command="{Binding Source={x:Reference ThisPage}, Path=CopyCodeCommand}"
+                  CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

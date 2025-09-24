@@ -24,6 +24,7 @@
             <VerticalStackLayout Grid.Column="2" Spacing="8">
                 <Button Text="Edit Profile" Command="{Binding EditProfileCommand}" />
                 <Button Text="Settings" Command="{Binding OpenSettingsCommand}" />
+                <Button Text="My rewards" Command="{Binding OpenRewardsCommand}" />
             </VerticalStackLayout>
         </Grid>
 

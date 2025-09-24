@@ -39,3 +39,51 @@
     height: 1;
     background-color: #e3e3e3;
 }
+
+
+/* ----- Rewards page styles ----- */
+/*.reward-card {
+    background-color: #213A9C;*/ /* deep blue */
+    /*color: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.brand-title {
+    color: #ffffff;
+    font-weight: 700;*/
+    /*font-size: 16px;*/
+    /*text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.muted {
+    color: #D6DBF5;
+}*/
+/* pale text for "USE CODE" */
+/*.code-kbd {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.headline {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.accent-red {
+    color: #FF3B30;
+    font-weight: 800;
+}*/
+/* 10% / $5 */
+
+/*.collect-btn {
+    background-color: #E6E8F5;*/ /* light pill */
+    /*color: #213A9C;*/
+    /*border-radius: 16px;*/
+    /*padding: 6px 14px;
+    font-weight: 700;
+}*/

@@ -6,7 +6,7 @@
              Title="Login"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
-             BackgroundColor="">
+             >
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label Text="InstaLite" StyleClass="page-title" HorizontalOptions="Center"/>

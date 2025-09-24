@@ -42,6 +42,9 @@ public partial class ProfileViewModel : ObservableObject
     private Task OpenSettingsAsync() => Shell.Current.GoToAsync(nameof(Views.SettingsPage));
 
     [RelayCommand]
+    private Task OpenRewardsAsync() => Shell.Current.GoToAsync(nameof(Views.RewardPage));
+
+    [RelayCommand]
     private Task SignOutAsync()
     {
         App.Auth.SignOut();
